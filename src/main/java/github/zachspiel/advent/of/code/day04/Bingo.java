@@ -3,7 +3,6 @@ package github.zachspiel.advent.of.code.day04;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 import util.Util;
 

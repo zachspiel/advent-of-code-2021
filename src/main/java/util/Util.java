@@ -40,4 +40,28 @@ public class Util {
 
         return lines;
     }
+    
+    public static ArrayList<Integer> getCommaSeperatedValuesFromFile(Path path) {
+        ArrayList<Integer> values = new ArrayList<>();
+
+        try {
+            File myObj = path.toFile();
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String nextLine = myReader.nextLine();
+
+                String[] stringValues = nextLine.split(",");
+                
+                for (int index = 0; index < stringValues.length; index++) {
+                    values.add(Integer.parseInt(stringValues[index]));
+                }
+            }
+
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred while reading input file.");
+            e.printStackTrace();
+        }
+        return values;
+    }
 }
