@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Util {
@@ -64,4 +65,15 @@ public class Util {
         }
         return values;
     }
+    
+     public static String sortString(String string) {
+        char tempArray[] = string.toCharArray();
+        Arrays.sort(tempArray);
+ 
+        return new String(tempArray);
+    }
+     
+     public static boolean stringsAreEqual(String string1, String string2) {
+         return sortString(string1).equals(sortString(string2));
+     }
 }
