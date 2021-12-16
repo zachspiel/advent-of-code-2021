@@ -17,7 +17,7 @@ public class Util {
     public static ArrayList<Integer> getAllNumbersFromFile(Path path) {
         ArrayList<String> lines = getAllLinesFromFile(path);
         ArrayList<Integer> integerValues = new ArrayList<>();
-        
+
         lines.stream().forEach(line -> integerValues.add(Integer.parseInt(line)));
 
         return integerValues;
@@ -41,7 +41,7 @@ public class Util {
 
         return lines;
     }
-    
+
     public static ArrayList<Integer> getCommaSeperatedValuesFromFile(Path path) {
         ArrayList<Integer> values = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class Util {
                 String nextLine = myReader.nextLine();
 
                 String[] stringValues = nextLine.split(",");
-                
+
                 for (int index = 0; index < stringValues.length; index++) {
                     values.add(Integer.parseInt(stringValues[index]));
                 }
@@ -65,15 +65,15 @@ public class Util {
         }
         return values;
     }
-    
-     public static String sortString(String string) {
+
+    public static String sortString(String string) {
         char tempArray[] = string.toCharArray();
         Arrays.sort(tempArray);
- 
+
         return new String(tempArray);
     }
-     
-     public static boolean stringsAreEqual(String string1, String string2) {
-         return sortString(string1).equals(sortString(string2));
-     }
+
+    public static boolean stringsAreEqual(String string1, String string2) {
+        return sortString(string1).equals(sortString(string2));
+    }
 }
