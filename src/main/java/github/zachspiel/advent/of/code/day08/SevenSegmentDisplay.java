@@ -16,8 +16,8 @@ public class SevenSegmentDisplay {
         ArrayList<String> signals = Util.getAllLinesFromFile(INPUT_FILE);
         int total = 0;
 
-        for (int index = 0; index < signals.size(); index++) {
-            ArrayList<String> outputValues = getOutputValues(signals.get(index));
+        for (String signal : signals) {
+            ArrayList<String> outputValues = getValuesFromLine(signal, 1);
 
             total += outputValues.stream().filter(SevenSegmentDisplay::isUniqueSegment)
                     .collect(Collectors.toList()).size();
@@ -32,9 +32,9 @@ public class SevenSegmentDisplay {
         long total = 0L;
 
         for (String line : lines) {
-            ArrayList<String> signalPatterns = getSignalPatterns(line);
+            ArrayList<String> signalPatterns = getValuesFromLine(line, 0);
+            ArrayList<String> outputValues = getValuesFromLine(line, 1);
             ArrayList<String> decodedPatterns = decodeStaticPatterns(signalPatterns);
-            ArrayList<String> outputValues = getOutputValues(line);
             String outputValueTotal = "";
             signalPatterns.sort(Comparator.comparingInt(String::length));
 
@@ -78,21 +78,13 @@ public class SevenSegmentDisplay {
 
         return total;
     }
-    
-    private static ArrayList<String> getSignalPatterns(String line) {
-        String[] outputValues = line.split("\\|")[0].trim().split(" ");
-        ArrayList<String> result = new ArrayList<>();
 
-        Collections.addAll(result, outputValues);
-        return result;
-    }
+    private static ArrayList<String> getValuesFromLine(String line, int index) {
+        String[] values = line.split("\\|")[index].trim().split(" ");
+        ArrayList<String> valuesList = new ArrayList<>();
 
-    private static ArrayList<String> getOutputValues(String line) {
-        String[] outputValues = line.split("\\|")[1].trim().split(" ");
-        ArrayList<String> result = new ArrayList<>();
-
-        Collections.addAll(result, outputValues);
-        return result;
+        Collections.addAll(valuesList, values);
+        return valuesList;
     }
 
     private static int countOverlappingCharacters(String pattern, String signal) {
@@ -112,7 +104,7 @@ public class SevenSegmentDisplay {
         return total;
     }
 
-    private static String getPattern(ArrayList<String> patterns, int length) {
+    private static String getPatternByLength(ArrayList<String> patterns, int length) {
         return patterns.stream()
                 .filter(pattern -> pattern.length() == length)
                 .findFirst().get();
@@ -121,10 +113,10 @@ public class SevenSegmentDisplay {
     private static ArrayList<String> decodeStaticPatterns(ArrayList<String> patterns) {
         ArrayList<String> decodedPatterns = new ArrayList<>(Arrays.asList(new String[10]));
 
-        decodedPatterns.set(1, getPattern(patterns, 2));
-        decodedPatterns.set(4, getPattern(patterns, 4));
-        decodedPatterns.set(7, getPattern(patterns, 3));
-        decodedPatterns.set(8, getPattern(patterns, 7));
+        decodedPatterns.set(1, getPatternByLength(patterns, 2));
+        decodedPatterns.set(4, getPatternByLength(patterns, 4));
+        decodedPatterns.set(7, getPatternByLength(patterns, 3));
+        decodedPatterns.set(8, getPatternByLength(patterns, 7));
 
         return decodedPatterns;
     }

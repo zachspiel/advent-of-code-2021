@@ -60,6 +60,6 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="github.zachspiel.advent.of.code.day08.SevenSegmentDisplayTest" name="testPartA" time="0.031"/>
-  <testcase classname="github.zachspiel.advent.of.code.day08.SevenSegmentDisplayTest" name="testPartB" time="0.024"/>
+  <testcase classname="github.zachspiel.advent.of.code.day08.SevenSegmentDisplayTest" name="testPartA" time="0.03"/>
+  <testcase classname="github.zachspiel.advent.of.code.day08.SevenSegmentDisplayTest" name="testPartB" time="0.025"/>
 </testsuite>
